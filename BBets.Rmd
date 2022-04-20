@@ -1,6 +1,6 @@
 ---
 title: "Brownlows Bets"
-author: "Your Name Goes Here"
+author: "Madeleine Alseryani"
 output: 
   html_document:
     number_sections: true
@@ -29,12 +29,42 @@ source(file="BrLw.R")
 Report git commit structure:
 There are 3 questions and there should be at least 3 separate commits, at least one dealing with each of the 3 questions.
 1. What are the fair odds for a bet on matching birthdays in a 35 person class.
+
+We will use a simulation where we hire 40 differrent brownlows and send them all out to try this and manipulate the value of odds until the average of the different values comes out to zero. 
+
+```{r}
+profit=as.numeric()
+for(i in 1:400){
+profit[i]=BrLw(odds=4.4)
+}
+hist(profit)
+```
+
+After using manipulation of odds in the function to tune Brownlows earnings to zero, we were able to see that the fair odds are somewhere in between 4.4 - 4.5.
+ This is where brownlown is not making any profit. 
+
 2. For what size class is a 2:1 odds bet fair.
+
+```{r}
+profit=as.numeric()
+for(i in 1:400){
+profit[i]=BrLw(numClass=28.5)
+}
+hist(profit)
+```
+For a 2:1 odds to be fair, the class room size is going to have to be around 28 and 29.
+
+
 3. How much money would Brownlow be expected to end up with if the bets went as described.
+
+If the bets went as described, Brownlow could have made 223 and 340$.
 
 ## Our strategy is to build a Function and the use it to answer the three questions. 
 
 The function will be given a class_size by number of students, odds, and Number_of_times brownlow made the bet.  It will give you back how much Brownlows earnings were. We will use it to answer our three questions below. If you can, improve this function by giving default values to some of its inputs. 
+
+
+
 
 # In the class and payoff as described  If you highered 40 brownlow substitute teachers to do the same thing that Brownlow did then.
 ## what is their average earnings
@@ -45,10 +75,22 @@ The function will be given a class_size by number of students, odds, and Number_
 
 # What are the fair odds? Use manipulation of odds in the function to tune Brownlows earnings to zero. 
 
+```{r}
+profit=as.numeric()
+for(i in 1:1000){
+profit[i]=BrLw()
+}
+hist(profit)
+sprofit<-sort(profit)
+print (sprofit [25])
+print (sprofit [975])
+```
+
+There is a 95% confidence interval and the profit is somewhere in between $226 on the low end and $343 in the high end. This is a 95% confidence interval on how much Brownlow would make playing this game. Even though we did not have to use 1000, this would have still gave us very similar results as to using 40.
 
 <!--Decide on your methods:  In this section explain the approach you will take to attack the issue --- how will you decide on a likely estimate of professor Brownlow's earnings or losses after 637 bets. Also explain how you construct a 95% confidence interval about your estimate of his winnings !-->
 
-
+ 
 
 
 # What size of class makes the 2:1 bet fair?  Use manipulation of number of Students to tune Brownlows earnings to zero.
@@ -56,13 +98,12 @@ The function will be given a class_size by number of students, odds, and Number_
 <!--Explain and display the results of your method of coming up with the estimate of professor Brownlows betting profits!-->
 
 
-
-
-
-
+After using manipulation of number of students to tune Brownlows earnings to zero, the results show that a class of a size about 28-29 will make the 2:1 bet fair. 
 
 
 # Discussion and Conclusion
 
 <!--Discussion and conclusion here.  If professor Brownlow is consistantly making or losing money how could he change his payout so that his profits center on zero?  Also discuss what size his class should be in order to have his current scheme balance at zero profit.!-->
+
+In concnlusion we were able to use manipulation of numbers to derermine what we are looking for. One of the things observed was that as the odds would get smaller, brownlow would make more money and have more profit. But if the odds were getting bigger, then brownlow would have no profit or even lose money.
 
